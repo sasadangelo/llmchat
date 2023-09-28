@@ -1,12 +1,11 @@
 # app.py
 from typing import List, Union
-
 from dotenv import load_dotenv, find_dotenv
 import streamlit as st
-from base_model import BaseModel
-from chatgpt_model import ChatGPT35Model, ChatGPT40Model
-from llama_model import LlamaModel
 from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
+from src.models.base_model import Model
+from src.models.chatgpt_model import ChatGPT35Model, ChatGPT40Model
+from src.models.llama_model import LlamaModel
 
 def init_page() -> None:
     st.set_page_config(
@@ -24,7 +23,7 @@ def init_messages() -> None:
         ]
         st.session_state.costs = []
 
-def select_model() -> BaseModel:
+def select_model() -> Model:
     model_name = st.sidebar.radio("Choose LLM:", ("Llama 2.0", "GPT 3.5", "GPT 4.0"))
     temperature = st.sidebar.slider("Coherent <-> Creative:", min_value=0.0, max_value=1.0, value=0.0, step=0.01)
     if model_name == "GPT 3.5":

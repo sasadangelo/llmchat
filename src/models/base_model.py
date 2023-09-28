@@ -1,8 +1,10 @@
 # models/base_model.py
-class BaseModel:
-    def __init__(self):
-        # Common model initialization logic here
+class Model:
+    def __init__(self, temperature, model_name):
+        super().__init__()
+        self.model_name = model_name
+        self.temperature = temperature
 
-    def generate_response(self, messages):
+    def get_answer(self, messages) -> tuple[str, float]:
         # Common logic for generating a response
         pass
