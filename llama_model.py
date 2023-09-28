@@ -2,17 +2,16 @@
 from typing import List, Union
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-#from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 from langchain.llms import LlamaCpp
 from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 from base_model import BaseModel
 
 class LlamaModel(BaseModel):
-    def __init__(self, temperature, model_name):
-        super().__init__(temperature, model_name)
+    def __init__(self, temperature):
+        super().__init__(temperature, "llama-2-7b-chat.ggmlv3.q2_K")
         callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
         self.model = LlamaCpp(
-            model_path=f"./models/{model_name}.bin",
+            model_path=f"./models/{self.model_name}.bin",
             input={"temperature": temperature,
                    "max_length": 2000,
                    "top_p": 1
