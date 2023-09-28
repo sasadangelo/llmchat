@@ -32,7 +32,6 @@ class ChatBotApp:
     # The constructor load all the activities in the gpx folder of the logged in user.
     def __init__(self):
         self.current_page = None
-        st.session_state.logged_in_user = None
 
     # Runs the TrainingApp and initializes the first page as ActivityOverviewPage.
     def run(self):
