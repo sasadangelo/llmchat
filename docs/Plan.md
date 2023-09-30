@@ -38,5 +38,15 @@ When daily scrums are run online, the team can record the session. Later a pipel
 * Blockers
 
 later each person will receive the summary and his action items and blockers so that everyone will have cleaar the activities for that day.
- 
+
+## Tribe Organization
+
+A Tribe is a set of people with a single mission. Usually, in the Spotify model a Tribe is organized in Squad, Chapters, Guild and they can be spread across different organization. In order to manage a large group of people in a Tribe there could be several manager that works at different level in the organization. There are different elements in the organization of a Tribe, in this document I waant to focus only on two of them:
+
+* Vacations
+* Daily Shift
+
+I think that people caan use a simple chatbot and give simple interaction to create their vacation plan. Moreover, this vacation can be syncronized with the daily shift calendar to find possible conflicts. I think that LLM is the perfect tool to manage these elements and send them to aan AIOps server that can synchup them on the official calendar aand daily shift tools of the organization.
+
+
 
