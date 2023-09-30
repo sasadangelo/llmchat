@@ -28,9 +28,8 @@ class ChatBotPage(Page):
 
         # Supervise user input
         if user_input := st.chat_input("Input your question!"):
-            st.session_state.chatbot.add_message(HumanMessage(content=user_input))
             with st.spinner("MyChatBOT is typing ..."):
-                st.session_state.chatbot.generate_answer()
+                _, _ = st.session_state.chatbot.get_answer(user_input)
 
         # Display chat history
         messages = st.session_state.chatbot.get_chat_history()

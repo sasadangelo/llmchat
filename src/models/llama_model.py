@@ -52,7 +52,6 @@ class LlamaModel(Model):
         ]
         messages_list.append(
             f"{BOS}{B_INST} {(messages[-1]['content']).strip()} {E_INST}")
-
         return "".join(messages_list)
 
     def __convert_langchainschema_to_dict(self,

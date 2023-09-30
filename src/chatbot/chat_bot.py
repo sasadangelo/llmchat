@@ -1,6 +1,6 @@
 # chatbot.py
 from enum import Enum
-from langchain.schema import (AIMessage)
+from langchain.schema import (AIMessage, HumanMessage)
 from src.chatbot.conversation import Conversation
 from src.models.llama_model import LlamaModel
 from src.models.chatgpt_model import ChatGPT35Model, ChatGPT40Model
@@ -15,9 +15,6 @@ class ChatBOT:
         self.model = LlamaModel(0.0)
         self.conversation = Conversation()
 
-    def add_message(self, message):
-        self.conversation.add_message(message)
-
     def set_model(self, model_type, temperature):
         if model_type == self.Model.LLAMA:
             self.model = LlamaModel(temperature)
@@ -28,10 +25,12 @@ class ChatBOT:
         else:
             raise ValueError("Invalid model type")
 
-    def generate_answer(self):
+    def get_answer(self, user_input):
+        self.conversation.add_message(HumanMessage(content=user_input))
         answer, cost = self.model.get_answer(self.conversation.get_messages())
         self.conversation.add_message(AIMessage(content=answer))
         self.conversation.add_cost(cost)
+        return answer, cost
 
     def get_chat_history(self):
         return self.conversation.get_messages()
