@@ -46,7 +46,11 @@ A Tribe is a set of people with a single mission. Usually, in the Spotify model 
 * Vacations
 * Daily Shift
 
-I think that people caan use a simple chatbot and give simple interaction to create their vacation plan. Moreover, this vacation can be syncronized with the daily shift calendar to find possible conflicts. I think that LLM is the perfect tool to manage these elements and send them to aan AIOps server that can synchup them on the official calendar aand daily shift tools of the organization.
+I think that people caan use a simple chatbot and give simple interaction to create their vacation plan. Moreover, this vacation can be syncronized with the daily shift calendar to find possible conflicts. I think that LLM is the perfect tool to manage these elements and send them to aan AIOps server that can synchup them on the official calendar aand daily shift tools of the organization. 
+
+Generally people are creatures of habit and tend to always take their holidays at the same times. For this reason, an AI could create an initial calendar based on past habits which the user can then change by simply interacting with a chatbot. When all people insert their vacations manager can immediately see in a backend system the vacation of all his reports and find immeddiaately conflicts.
+
+The vacation overview can be used to create a daily shift to cover a 24/7 support on different geography simply comparing the orgaanization, the people, the geograaphy, and vacations. Every month aa daily shift plan can be compiled and store in aa backend system like, for example, pager duty. 
 
 
 
