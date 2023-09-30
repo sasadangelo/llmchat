@@ -2,7 +2,7 @@
 
 The goal of this file is to document my plans in AI experiments and how to improve the automation of a software organization running using Agile philosophy and DevOps practices. I have divided my plan into possible scenarios that need to be reviewed and prioritized at team level in order to focus on those that can add the most immediate value.
 
-## Scrum Artifacts
+## Agile
 
 Agile like many cultural approach is based on values, principles and practices. Infact, Agile is based on 4 values, 12 principles, and different practices like DevOps, Scrum, Spotify model, etc. In particular, the Scrum framework uses some artifacts like:
 
