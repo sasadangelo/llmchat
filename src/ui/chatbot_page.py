@@ -12,6 +12,7 @@ from src.models.base_model import Model
 from src.models.chatgpt_model import ChatGPT35Model, ChatGPT40Model
 from src.models.llama_model import LlamaModel
 from src.ui.page import Page
+from src.chatbot.conversation import Conversation
 
 # This class is responsible for displaying an overview of running activities using Streamlit.
 # It loads and processes activity data from GPX files, including metrics such as date, name, distance,
@@ -25,14 +26,14 @@ class ChatBotPage(Page):
 
         # Supervise user input
         if user_input := st.chat_input("Input your question!"):
-            st.session_state.messages.append(HumanMessage(content=user_input))
+            st.session_state.conversation.add_message(HumanMessage(content=user_input))
             with st.spinner("ChatGPT is typing ..."):
-                answer, cost = model.get_answer(st.session_state.messages)
-            st.session_state.messages.append(AIMessage(content=answer))
-            st.session_state.costs.append(cost)
+                answer, cost = model.get_answer(st.session_state.conversation.get_messages())
+            st.session_state.conversation.add_message(AIMessage(content=answer))
+            st.session_state.conversation.add_cost(cost)
 
         # Display chat history
-        messages = st.session_state.get("messages", [])
+        messages = st.session_state.conversation.get_messages()
         for message in messages:
             if isinstance(message, AIMessage):
                 with st.chat_message("assistant"):
@@ -41,7 +42,7 @@ class ChatBotPage(Page):
                 with st.chat_message("user"):
                     st.markdown(message.content)
 
-        costs = st.session_state.get("costs", [])
+        costs = st.session_state.conversation.get_costs()
         st.sidebar.markdown("## Costs")
         st.sidebar.markdown(f"**Total cost: ${sum(costs):.5f}**")
         for cost in costs:
@@ -66,9 +67,9 @@ class ChatBotPage(Page):
 
     def __init_messages(self) -> None:
         clear_button = st.sidebar.button("Clear Conversation", key="clear")
-        if clear_button or "messages" not in st.session_state:
-            st.session_state.messages = [
-                SystemMessage(
-                    content="You are a helpful AI assistant. Reply your answer in mardkown format.")
-            ]
-            st.session_state.costs = []
+        if clear_button or "conversation" not in st.session_state:
+            print("11111")
+            conversation = Conversation()
+            conversation.add_message(SystemMessage(
+                    content="You are a helpful AI assistant. Reply your answer in mardkown format."))
+            st.session_state.conversation = conversation

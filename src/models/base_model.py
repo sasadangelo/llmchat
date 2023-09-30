@@ -5,6 +5,6 @@ class Model:
         self.model_name = model_name
         self.temperature = temperature
 
+    # Common logic for generating a response
     def get_answer(self, messages) -> tuple[str, float]:
-        # Common logic for generating a response
         pass
