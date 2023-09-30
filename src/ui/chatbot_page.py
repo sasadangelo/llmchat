@@ -7,12 +7,14 @@
 #
 # SPDX-License-Identifier: MIT
 import streamlit as st
-from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
+#from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
+from langchain.schema import (HumanMessage, AIMessage)
 from src.models.base_model import Model
-from src.models.chatgpt_model import ChatGPT35Model, ChatGPT40Model
-from src.models.llama_model import LlamaModel
+#from src.models.chatgpt_model import ChatGPT35Model, ChatGPT40Model
+#from src.models.llama_model import LlamaModel
 from src.ui.page import Page
-from src.chatbot.conversation import Conversation
+from src.chatbot.chat_bot import ChatBOT
+#from src.chatbot.conversation import Conversation
 
 # This class is responsible for displaying an overview of running activities using Streamlit.
 # It loads and processes activity data from GPX files, including metrics such as date, name, distance,
@@ -26,14 +28,12 @@ class ChatBotPage(Page):
 
         # Supervise user input
         if user_input := st.chat_input("Input your question!"):
-            st.session_state.conversation.add_message(HumanMessage(content=user_input))
-            with st.spinner("ChatGPT is typing ..."):
-                answer, cost = model.get_answer(st.session_state.conversation.get_messages())
-            st.session_state.conversation.add_message(AIMessage(content=answer))
-            st.session_state.conversation.add_cost(cost)
+            st.session_state.chatbot.add_message(HumanMessage(content=user_input))
+            with st.spinner("MyChatBOT is typing ..."):
+                st.session_state.chatbot.generate_answer()
 
         # Display chat history
-        messages = st.session_state.conversation.get_messages()
+        messages = st.session_state.chatbot.get_chat_history()
         for message in messages:
             if isinstance(message, AIMessage):
                 with st.chat_message("assistant"):
@@ -42,7 +42,7 @@ class ChatBotPage(Page):
                 with st.chat_message("user"):
                     st.markdown(message.content)
 
-        costs = st.session_state.conversation.get_costs()
+        costs = st.session_state.chatbot.get_chat_costs()
         st.sidebar.markdown("## Costs")
         st.sidebar.markdown(f"**Total cost: ${sum(costs):.5f}**")
         for cost in costs:
@@ -54,22 +54,21 @@ class ChatBotPage(Page):
         )
         st.header("MyChatBOT")
         st.sidebar.title("Options")
+        if "chatbot" not in st.session_state:
+            chabot = ChatBOT()
+            st.session_state.chatbot = chabot
 
     def __select_model(self) -> Model:
         model_name = st.sidebar.radio("Choose LLM:", ("Llama 2.0", "GPT 3.5", "GPT 4.0"))
         temperature = st.sidebar.slider("Coherent <-> Creative:", min_value=0.0, max_value=1.0, value=0.0, step=0.01)
         if model_name == "GPT 3.5":
-            return ChatGPT35Model(temperature)
+            st.session_state.chatbot.set_model(ChatBOT.Model.CHATGPT_3_5, temperature)
         elif model_name == "GPT 4.0":
-            return ChatGPT40Model(temperature)
+            st.session_state.chatbot.set_model(ChatBOT.Model.CHATGPT_4_0, temperature)
         elif model_name == "Llama 2.0":
-            return LlamaModel(temperature)
+            st.session_state.chatbot.set_model(ChatBOT.Model.LLAMA, temperature)
 
     def __init_messages(self) -> None:
         clear_button = st.sidebar.button("Clear Conversation", key="clear")
-        if clear_button or "conversation" not in st.session_state:
-            print("11111")
-            conversation = Conversation()
-            conversation.add_message(SystemMessage(
-                    content="You are a helpful AI assistant. Reply your answer in mardkown format."))
-            st.session_state.conversation = conversation
+        if clear_button:
+            st.session_state.chatbot.clear_conversation()
