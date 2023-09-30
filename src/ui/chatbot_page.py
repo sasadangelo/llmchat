@@ -28,7 +28,7 @@ class ChatBotPage(Page):
 
         # Supervise user input
         if user_input := st.chat_input("Input your question!"):
-            with st.spinner("MyChatBOT is typing ..."):
+            with st.spinner("LLM ChatBOT is typing ..."):
                 _, _ = st.session_state.chatbot.get_answer(user_input)
 
         # Display chat history
@@ -49,16 +49,16 @@ class ChatBotPage(Page):
 
     def __init_page(self) -> None:
         st.set_page_config(
-            page_title="MyChatBOT"
+            page_title="LLM ChatBOT"
         )
-        st.header("MyChatBOT")
+        st.header("LLM ChatBOT")
         st.sidebar.title("Options")
         if "chatbot" not in st.session_state:
             chabot = ChatBOT()
             st.session_state.chatbot = chabot
 
     def __select_model(self) -> Model:
-        model_name = st.sidebar.radio("Choose LLM:", ("Llama 2.0", "GPT 3.5", "GPT 4.0"))
+        model_name = st.sidebar.radio("Choose LLM model:", ("Llama 2.0", "GPT 3.5", "GPT 4.0"))
         temperature = st.sidebar.slider("Coherent <-> Creative:", min_value=0.0, max_value=1.0, value=0.0, step=0.01)
         if model_name == "GPT 3.5":
             st.session_state.chatbot.set_model(ChatBOT.Model.CHATGPT_3_5, temperature)
