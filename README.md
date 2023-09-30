@@ -16,6 +16,8 @@ Here the Prerequisites:
 
 In order to use ChatGPT 3.5 and ChatGPT 4.0 you need to login on [Open AI](https://beta.openai.com/signup), in the upper right corner select **Personal**->**View API Key** and then click the button **Create new secret key**. Open AI provides 5$ free credit you can use in three months, you can use this credit to play with this chatbot.
 
+Once you have the API Key you can add it in the ```.env.example``` file and rename it ```.env```.
+
 ## How to use LLama 2
 
 LLama 2 is the LLM model created by Meta. Llama2 comes in various flavors, differentiated by the number of parameters (7 billion, 13 billion, or 70 billion) or by the tuning target (such as a plain version or one optimized for chat conversations). Given the constraints of my local PC, I’ve chosen to download the **llama-2–7b-chat.ggmlv3.q2_K.bin** model, which you can download [here](https://huggingface.co/localmodels/Llama-2-7B-Chat-ggml/tree/main). This model is the most resource-efficient member of the Llama2 family, requiring the least amount of RAM and ROM space.
