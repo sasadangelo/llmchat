@@ -76,3 +76,10 @@ Here the instructions to run LLM ChatBOT in Text mode:
   ```
   python3 text_app.py
   ```
+
+## Demo
+
+This is a LLM ChatBOT video demo.
+
+https://github.com/sasadangelo/llmchatbot/assets/12810456/0dcfbd51-a2c7-4511-8ada-859864ca9bf5
+
