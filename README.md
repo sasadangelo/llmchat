@@ -56,12 +56,17 @@ Here the instructions to run LLM ChatBOT in GUI mode:
   python3 -m venv venv
   ```
 
-4. Install the Python libraries in your Python virtual environment:
+4. Activate the Python virtual environment:
+  ```
+  source venv/bin/activate
+  ```
+
+5. Install the Python libraries in your Python virtual environment:
   ```
   pip3 install -r requirements.txt
   ```
 
-5. Run the LLM ChatBOT in GUI mode:
+6. Run the LLM ChatBOT in GUI mode:
   ```
   streamlit run gui_app.py
   ```
