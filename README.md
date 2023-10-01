@@ -1,6 +1,6 @@
 # LLM ChatBOT
 
-Large Language Model (LLM) ChatBOT is my first experiment with LLM Artificial Intelligence (AI). It is a ChatBOT that can works with different LLM models (free or paid) to interact with the user. The chatbot is configurable to provide a wide range of behaviour that goes from the more coherent to the more creative. Since the chatbot uses LLM paid models, it provide cost estimation of each conversation session. In whatver moment you can clear the conversation.
+Large Language Model (LLM) ChatBOT is my first experiment with LLM Artificial Intelligence (AI). The project is mainly based on [this article](https://medium.com/@daydreamersjp/implementing-locally-hosted-llama2-chat-ui-using-streamlit-53b181651b4e) that I modified to improve some stuff and create a better code base structure. It is a ChatBOT that can works with different LLM models (free or paid) to interact with the user. The chatbot is configurable to provide a wide range of behaviour that goes from the more coherent to the more creative. Since the chatbot uses LLM paid models, it provide cost estimation of each conversation session. In whatver moment you can clear the conversation.
 
 This project is an experiment, however, my experience as a developer has taught me that when you provide two modes of interaction (graphical and textual) you are forced to structure your code well. For this reason the chatbot supports two interaction modes: GUI and text.
 
