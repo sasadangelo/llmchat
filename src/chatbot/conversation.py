@@ -9,7 +9,8 @@
 # SPDX-License-Identifier: MIT
 from langchain.schema import (SystemMessage)
 
-# This class represents a generic chatbot conversion. It contains the chat history of the messages and the cost of each one.
+# This class represents a generic chatbot conversion. 
+# It contains the chat history of the messages and the cost of each one.
 class Conversation:
     def __init__(self):
         self.__init()

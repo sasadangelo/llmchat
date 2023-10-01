@@ -1,8 +1,8 @@
-# TrainingApp - Manage Streamlit Application and Navigation
+# ChatBotApp - Manage Streamlit Application and Navigation
 #
-# This file defines the TrainingApp class, which is responsible for managing the Streamlit application
-# and navigation between different pages. It initializes the initial page, handles page selection,
-# and serves as the entry point for running the application.
+# This file defines the ChatBotApp class, which is responsible for managing the Streamlit chatbot. 
+# It initializes the initial page, handles page selection, and serves as the entry point for running the 
+# application.
 #
 # Copyright (C) 2023 Salvatore D'Angelo
 # Maintainer: Salvatore D'Angelo sasadangelo@gmail.com
@@ -14,9 +14,13 @@ import streamlit as st
 from dotenv import load_dotenv, find_dotenv
 from src.ui.chatbot_page import ChatBotPage
 
+# Decorator to implement the Singleton design pattern.
+# A singleton ensures that there is only one instance of a specific class
+# and provides a global access point to this instance.
 def singleton(cls):
     instances = {}
 
+    # Function to get the singleton instance.
     def get_instance(*args, **kwargs):
         if cls not in instances:
             instances[cls] = cls(*args, **kwargs)

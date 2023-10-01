@@ -1,4 +1,12 @@
-# models/llama_model.py
+# LlamaModel - LLama 2 Model
+#
+# This class represents the LLama 2 model. It is used to create the prompt and the answer to the user input using
+# the LLama 2 model.
+#
+# Copyright (C) 2023 Salvatore D'Angelo
+# Maintainer: Salvatore D'Angelo sasadangelo@gmail.com
+#
+# SPDX-License-Identifier: MIT
 from typing import List, Union
 from langchain.callbacks.manager import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
@@ -6,7 +14,11 @@ from langchain.llms import LlamaCpp
 from langchain.schema import (SystemMessage, HumanMessage, AIMessage)
 from src.models.base_model import Model
 
+# This class represents the LLamaa 2 model used to generate the user's reply.
 class LlamaModel(Model):
+    # This method initialize the LLama 2 model calling the superclass contructor and passing
+    # the model name (llama-2-7b-chat.ggmlv3.q2_K) and the temperature. The temperature is a
+    # model's configuration parameter ranging from 0 to 1 to provide coherent vs creative answers.
     def __init__(self, temperature):
         super().__init__(temperature, "llama-2-7b-chat.ggmlv3.q2_K")
         callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
@@ -23,6 +35,10 @@ class LlamaModel(Model):
     def get_answer(self, messages) -> tuple[str, float]:
         return self.model(self.__llama_v2_prompt(self.__convert_langchainschema_to_dict(messages))), 0.0
 
+    # This method creates the prompt for the model. It uses a set of messages formed by:
+    # - system message
+    # - chat history
+    # - the question
     def __llama_v2_prompt(self, messages: List[dict]) -> str:
         """
         Convert the messages in list of dictionary format to Llama2 compliant format.
@@ -54,6 +70,7 @@ class LlamaModel(Model):
             f"{BOS}{B_INST} {(messages[-1]['content']).strip()} {E_INST}")
         return "".join(messages_list)
 
+    # This method works at support of the get_answer method.
     def __convert_langchainschema_to_dict(self,
             messages: List[Union[SystemMessage, HumanMessage, AIMessage]]) \
             -> List[dict]:
@@ -65,6 +82,10 @@ class LlamaModel(Model):
                 "content": message.content
                 } for message in messages]
 
+    # Depending on message type in input it returns:
+    # - system
+    # - user
+    # - aassistant
     def __find_role(self, message: Union[SystemMessage, HumanMessage, AIMessage]) -> str:
         """
         Identify role name from langchain.schema object.
