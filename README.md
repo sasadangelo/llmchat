@@ -35,7 +35,7 @@ Here the instructions to install the LLM ChatBOT prerequisites:
 
 * Run this command to install Python on your system:
 ```
-brew install python
+brew install python3
 ```
 
 * Install some prerequisites libraries:
@@ -43,6 +43,11 @@ brew install python
 brew install jpeg
 brew install zlib
 brew install libtiff
+```
+
+* Install wget tool:
+```
+brew install wget
 ```
 
 ## How to run the LLM ChatBOT (GUI mode)
