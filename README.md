@@ -38,6 +38,13 @@ Here the instructions to install the LLM ChatBOT prerequisites:
 brew install python
 ```
 
+* Install some prerequisites libraries:
+```
+brew install jpeg
+brew install zlib
+brew install libtiff
+```
+
 ## How to run the LLM ChatBOT (GUI mode)
 
 Here the instructions to run LLM ChatBOT in GUI mode:
